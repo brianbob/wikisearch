@@ -1,0 +1,6 @@
+name: Wikisearch
+description: An fun module to scrape and search wikipedia pages.
+package: BBI
+type: module
+version: 1.0
+core: 8.x

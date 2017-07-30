@@ -1,0 +1,7 @@
+hello_world.content:
+  path: '/test'
+  defaults:
+    _controller: '\Drupal\wikisearch\Controller\Wikisearch::content'
+    _title: 'Hello World'
+  requirements:
+    _permission: 'access content'

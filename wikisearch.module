@@ -1,0 +1,4 @@
+<?php
+
+include_once 'includes/link.inc';
+include_once 'includes/LinksList.inc';

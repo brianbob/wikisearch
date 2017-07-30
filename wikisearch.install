@@ -1,0 +1,153 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ *
+ * Defines the database tables used by this module.
+ *
+ * @see hook_schema()
+ *
+ */
+function wikisearch_schema() {
+  $schema['wikisearch_to_search'] = array(
+    'description' => 'Stores the links that need to be searched. ',
+    'fields' => array(
+      'lid' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Link ID.',
+      ),
+      'created' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Time this entry was created.",
+      ),
+      'changed' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Last time this entry was altered.",
+      ),
+      'link' => array(
+        'type' => 'varchar',
+        'length' => 510,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The link.',
+      ),
+    ),
+    'primary key' => array('lid'),
+    'indexes' => array(
+      'link' => array('link'),
+      'created' => array('created'),
+      'lid' => array('lid'),
+    ),
+  );
+
+  $schema['wikisearch_already_searched'] = array(
+    'description' => 'Stores the links that have already been searched. ',
+    'fields' => array(
+      'lid' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Link ID.',
+      ),
+      'created' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Time this entry was created.",
+      ),
+      'changed' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => "Last time this entry was altered.",
+      ),
+      'link' => array(
+        'type' => 'varchar',
+        'length' => 510,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The link.',
+      ),
+    ),
+    'primary key' => array('lid'),
+    'indexes' => array(
+      'link' => array('link'),
+      'created' => array('created'),
+      'lid' => array('lid'),
+    ),
+  );
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ *
+ * Populates the list of wikipedia pages I don't want to visit and the starting page to visit.
+ *
+ * @see hook_install()
+ *
+ */
+function wikisearch_install() {
+  $list = new LinksList();
+  // List out the links we don't want to go to.
+  $urls = array(
+   'https://ar.wikipedia.org/wiki/',
+   'https://bg.wikipedia.org/wiki/',
+   'https://bs.wikipedia.org/wiki/',
+   'https://ca.wikipedia.org/wiki/',
+   'https://cs.wikipedia.org/wiki/',
+   'https://da.wikipedia.org/wiki/',
+   'https://de.wikipedia.org/wiki/',
+   'https://et.wikipedia.org/wiki/',
+   'https://el.wikipedia.org/wiki/',
+   'https://es.wikipedia.org/wiki/',
+   'https://eo.wikipedia.org/wiki/',
+   'https://eu.wikipedia.org/wiki/',
+   'https://fa.wikipedia.org/wiki/',
+   'https://fr.wikipedia.org/wiki/',
+   'https://gl.wikipedia.org/wiki/',
+   'https://ko.wikipedia.org/wiki/',
+   'https://hr.wikipedia.org/wiki/',
+   'https://id.wikipedia.org/wiki/',
+   'https://it.wikipedia.org/wiki/',
+   'https://he.wikipedia.org/wiki/',
+   'https://ka.wikipedia.org/wiki/',
+   'https://lv.wikipedia.org/wiki/',
+   'https://lt.wikipedia.org/wiki/',
+   'https://hu.wikipedia.org/wiki/',
+   'https://ms.wikipedia.org/wiki/',
+   'https://nl.wikipedia.org/wiki/',
+   'https://ja.wikipedia.org/wiki/',
+   'https://no.wikipedia.org/wiki/',
+   'https://nn.wikipedia.org/wiki/',
+   'https://pl.wikipedia.org/wiki/',
+   'https://pt.wikipedia.org/wiki/',
+   'https://ro.wikipedia.org/wiki/',
+   'https://ru.wikipedia.org/wiki/',
+   'https://simple.wikipedia.org/wiki/',
+   'https://sk.wikipedia.org/wiki/',
+   'https://sl.wikipedia.org/wiki/',
+   'https://sr.wikipedia.org/wiki/',
+   'https://sh.wikipedia.org/wiki/',
+   'https://fi.wikipedia.org/wiki/',
+   'https://sv.wikipedia.org/wiki/',
+   'https://th.wikipedia.org/wiki/',
+   'https://tr.wikipedia.org/wiki/',
+   'https://uk.wikipedia.org/wiki/',
+   'https://vi.wikipedia.org/wiki/',
+   'https://zh.wikipedia.org/wiki/',
+  );
+
+  foreach($urls as $url) {
+    $searched_link = new Link($url, TRUE);
+    $list->add($searched_link);
+  }
+
+  // Populate our starting list.
+  $new_link = new Link('http://en.wikipedia.org');
+  $list->add($new_link);
+}
