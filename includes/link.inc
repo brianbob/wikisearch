@@ -40,8 +40,10 @@
     }
 
     function validate() {
-      // @TODO
-      // Make sure it's not in the searched table already.
+      // Check to make sure that we are only searching wikipedia pages.
+      if (strpos($this->url, 'wikipedia') == false) {
+        $this->url = NULL;
+      }
     }
 
     function parse() {

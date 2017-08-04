@@ -38,9 +38,10 @@ function drush_wikisearch_scrape($name = '') {
         $link = new Link($url->href);
         // Clean the url a bit before inserting it into the database.
         $link->clean();
-        //$link->validate();
+        // Validate the link.
+        $link->validate();
         //$link->parse();
-        $link->print_url(); // TESTING
+        //$link->print_url(); // TESTING
         // Add the new link to our list.
         $list->add($link);
       }
