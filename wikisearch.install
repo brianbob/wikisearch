@@ -31,7 +31,7 @@ function wikisearch_schema() {
       ),
       'link' => array(
         'type' => 'varchar',
-        'length' => 510,
+        'length' => 2047,
         'not null' => TRUE,
         'default' => '',
         'description' => 'The link.',
@@ -67,7 +67,7 @@ function wikisearch_schema() {
       ),
       'link' => array(
         'type' => 'varchar',
-        'length' => 510,
+        'length' => 2047,
         'not null' => TRUE,
         'default' => '',
         'description' => 'The link.',
