@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\wikisearch\Link\Link;
+use Drupal\wikisearch\LinksList\LinksList;
 
 /**
  * Implements hook_schema().

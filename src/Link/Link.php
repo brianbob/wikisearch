@@ -1,5 +1,7 @@
 <?php
 
+namespace Drupal\wikisearch\Link;
+
 class Link {
 
   var $url;

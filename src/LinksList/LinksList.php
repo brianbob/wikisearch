@@ -1,5 +1,7 @@
 <?php
 
+namespace Drupal\wikisearch\LinksList;
+
 use Drupal\Core\Database\Database;
 use Drupal\wikisearch\Link\Link;
 

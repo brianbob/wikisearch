@@ -7,11 +7,13 @@
  * Implements hook_drush_command().
  */
 function wikisearch_drush_command() {
- $items = array();
+ $items = [];
  $items['scrape'] = [
    'description' => 'Scrape links for links and content',
    'aliases' => ['wikiscrape'],
+   'drupal dependencies' => ['wikisearch'],
  ];
+
  return $items;
 }
 
