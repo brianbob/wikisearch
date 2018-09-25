@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Database\Database;
+use Drupal\wikisearch\Link\Link;
 
 class LinksList {
 
@@ -8,13 +9,22 @@ class LinksList {
 
   }
 
+  /**
+   * Returns a list of links to search.
+   *
+   * @param  int $limit
+   *    The number of links to
+   * @return object
+   *   The datbase results object.
+   */
   function get_links($limit = NULL) {
     // Retrieves a \Drupal\Core\Database\Connection which is a PDO instance
     $connection = Database::getConnection();
-    $query = $connection->select('wikisearch_to_search', 'wts')->fields('wts', array());
+    $query = $connection->select('wikisearch_to_search', 'wts')
+      ->fields('wts', array());
 
     // If a limit was passed, set it on the query.
-    if (!is_null($connection) && is_numeric($limit)) {
+    if (isset($limit) && is_numeric($limit)) {
       $query->range(0, $limit);
     }
 
@@ -24,6 +34,12 @@ class LinksList {
     return $data->fetchAll(\PDO::FETCH_OBJ);
   }
 
+  /**
+   * Adds a link to the 'to search' list.
+   *
+   * @param Link $link
+   *   The link to add to the list
+   */
   function add(Link $link) {
     if($link->url != NULL) {
       $connection = \Drupal\Core\Database\Database::getConnection();
@@ -41,6 +57,12 @@ class LinksList {
     }
   }
 
+  /**
+   * Remove a link from the 'to search' list.
+   *
+   * @param  String $url
+   *   The URL to remove
+   */
   function remove($url) {
     if($url != NULL) {
       $connection = \Drupal\Core\Database\Database::getConnection();
