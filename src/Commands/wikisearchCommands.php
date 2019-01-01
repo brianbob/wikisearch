@@ -2,7 +2,7 @@
 
 namespace Drupal\wikisearch\Commands;
 
-use Drush\Commands\wikisearchCommands;
+use Drush\Commands\DrushCommands;
 
 /**
  * A Drush commandfile.
