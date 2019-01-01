@@ -1,0 +1,17 @@
+{
+  "name": "drupal/wikisearch",
+  "description": "A module to scrape and search wikipedia",
+  "type": "drupal-module",
+  "autoload": {
+    "psr-4": {
+      "Drupal\\wikisearch\\": "src/"
+    }
+  },
+  "extra": {
+    "drush": {
+      "services": {
+        "drush.services.yml": "^9"
+      }
+    }
+  }
+}
