@@ -1,10 +1,10 @@
 <?php
 
-require_once 'includes/simple_html_dom.php';
+require_once drupal_get_path('MODULE', 'wikisearch') . '/includes/simple_html_dom.php';
 
 use Drupal\wikisearch\LinksList\LinksList;
 
-class WikiSearch() {
+class WikiSearch {
 
   function __construct() {
 
