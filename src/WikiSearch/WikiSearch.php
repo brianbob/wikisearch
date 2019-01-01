@@ -1,7 +1,9 @@
 <?php
 
-require_once drupal_get_path('MODULE', 'wikisearch') . '/includes/simple_html_dom.php';
-
+namespace Drupal\wikisearch\WikiSearch;
+    
+require_once drupal_get_path('module', 'wikisearch') . '/includes/simple_html_dom.php';
+    
 use Drupal\wikisearch\LinksList\LinksList;
 
 class WikiSearch {
