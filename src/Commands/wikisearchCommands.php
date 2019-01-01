@@ -21,7 +21,8 @@ class wikisearchCommands extends DrushCommands {
    *   Scrape wikipedia
    */
   public function wikiscrape() {
-    wikisearch_scrape();
+    $wiki = new WikiSearch();
+    $wiki->scrape;
   }
 
 }
